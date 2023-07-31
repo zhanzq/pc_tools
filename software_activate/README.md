@@ -1,4 +1,6 @@
-# IDEA激活方法
+# 软件激活方法
+
+## 1. IDEA激活方法
 
 ### 1. IDEA Eval Reset使用方法
 网址：https://blog.csdn.net/qq_37699336/article/details/116528062
