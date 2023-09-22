@@ -9,6 +9,8 @@ from urllib.parse import urlparse
 import requests
 import time
 
+from common_utils.text_io.txt import load_from_json
+
 
 def remove_special_char(s, special_chars):
     if s is None or s.strip() == "":
@@ -92,6 +94,8 @@ def chatgpt(query, system_id="SV-ISP99104971161-0000", system_key="c98da2bc5fd00
 
 
 def chatgpt_org(query):
+    config = load_from_json(json_path="./config.json")
+
     url = "https://api.openai.com/v1/chat/completions"
 
     payload = json.dumps({
@@ -105,7 +109,7 @@ def chatgpt_org(query):
     })
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': f'Bearer {config.get("openai_api_key")}'
     }
 
     proxies = {

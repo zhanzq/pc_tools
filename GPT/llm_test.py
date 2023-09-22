@@ -5,7 +5,7 @@
 
 # 引用llm api
 from xinghuo import xinghuo
-from chatgpt import chatgpt
+from chatgpt import chatgpt, chatgpt_org
 from chatglm import chat_glm
 
 
@@ -120,17 +120,19 @@ def do_multi_intent_test():
 
 
 def main():
-    # 加载prompt数据
-    prompt_path = "./prompt.json"
-    prompt_dct = load_from_json(json_path=prompt_path)
-    prompt = prompt_dct["multi_intent_prompt"]
-
-    # 构造llm输入数据
-    query = "上下左右摆风"
-    query = prompt.replace("USER_INPUT", query)
-
-    res = multi_intent_split(query=query, llm_api=chatgpt)
-    print(res)
+    resp = chatgpt_org("hello")
+    print(resp)
+    # # 加载prompt数据
+    # prompt_path = "./prompt.json"
+    # prompt_dct = load_from_json(json_path=prompt_path)
+    # prompt = prompt_dct["multi_intent_prompt"]
+    #
+    # # 构造llm输入数据
+    # query = "上下左右摆风"
+    # query = prompt.replace("USER_INPUT", query)
+    #
+    # res = multi_intent_split(query=query, llm_api=chatgpt)
+    # print(res)
 
     # context = "灯调暗一点"
     # curr_query = "还是太刺眼了"
