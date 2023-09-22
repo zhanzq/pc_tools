@@ -34,17 +34,14 @@ def __get_context_id(query):
         "sec-fetch-site": "same-origin",
         "user-agent": agent
     }
-    method = "GET"
-    payload = ""
+    method = "POST"
     data = {'prompt': query, 'seed': 63158, 'max_tokens': 512, 'conversation_task_id': '64b4b3ee93ee62246541ff1a',
             'retry': False, 'retry_history_task_id': None}
-    if data:
-        payload = json.dumps(data)
-        method = "POST"
+
+    payload = json.dumps(data)
 
     try:
         response = requests.request(method, url, headers=headers, data=payload)
-
         obj_resp = json.loads(response.text)
 
         context_id = obj_resp.get("result", {}).get("context_id")
@@ -76,10 +73,6 @@ def __get_response(context_id):
     }
     method = "GET"
     payload = ""
-    data = ""
-    if data:
-        payload = json.dumps(data)
-        method = "POST"
 
     response = requests.request(method, url, headers=headers, data=payload)
 
@@ -98,14 +91,3 @@ def chat_glm(query):
         print(e)
         return None
 
-
-def do_test():
-    query = "我想去北海玩，有什么好吃的推荐吗"
-    # context_id = get_context_id(query)
-    # response = do_request(context_id)
-    resp = chat_glm(query)
-    print(resp)
-
-
-if __name__ == "__main__":
-    do_test()
